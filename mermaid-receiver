@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant PublicChannel
+    participant Receiver
+    participant Blockchain
+    
+    PublicChannel->>Receiver: Detect new encrypted payload<br/>(via relay or direct monitoring)
+    Receiver->>Blockchain: Verify entropy source<br/>(transaction or block)
+    Blockchain-->>Receiver: Confirms entropy validity
+    Receiver->>Receiver: Derive identical key<br/>using same algorithm
+    Receiver->>Receiver: Decrypt and verify message<br/>authentication tag
+    Receiver->>Receiver: Display message to user
