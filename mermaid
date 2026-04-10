@@ -1,0 +1,10 @@
+sequenceDiagram
+    participant Sender
+    participant Blockchain
+    participant PublicChannel
+    
+    Sender->>Blockchain: Scan for recent activity<br/>(own transactions or latest blocks)
+    Blockchain-->>Sender: Returns entropy source<br/>(tx hash or block hash)
+    Sender->>Sender: Derive encryption key<br/>from entropy + recipient address
+    Sender->>Sender: Encrypt message with XSalsa20-Poly1305
+    Sender->>PublicChannel: Publish encrypted payload<br/>+ minimal metadata
